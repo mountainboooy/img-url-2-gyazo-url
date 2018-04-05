@@ -3,25 +3,18 @@ const fs = require('fs')
 
 main ()
 
+
+
+function main () {
+  const strs = 'これはテストhttp://mountainboy.boo.jp/wordpress/wp-content/uploads/2014/11/DSC09773.jpgです。'
+  selectImageExpression(str)
+}
+
 function readPosts () {
   return fs.readdirSync('./_posts_original')
 }
 
-function main () {
-  const posts = readPosts()
-  posts.forEach (function (post, index) {
-    updateImageUrl(post)
-  })
-}
-
-function updateImageUrl(post) {
-  fs.readFile(`./_posts_original/${post}`, 'utf-8', function (err, text) {
-    if (err) {
-      console.log(err)
-    }
-      const newText = text.replace(/mountainboy\.me\/wp-content/g, 'mountainboy.boo.jp/wordpress/wp-content')
-      fs.writeFile(`./_posts/${post}`, newText, function (err) {
-        console.log('ok')
-      })
-  })
+function selectImageExpression (str) {
+  const reqExp = /http:\/\/mountainboy\.boo\.jp\/wordpress.+jpg/g
+  console.log(str.match(reqExp))
 }
