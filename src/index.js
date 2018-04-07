@@ -17,7 +17,7 @@ const index = {
   },
 
   readPosts: async function (dirPath) {
-    return new Promise (function (res, rej) {
+    return new Promise (function (res) {
       fs.readdir(dirPath, function (err, data) {
         if (err) throw err
         res(data)
@@ -26,7 +26,16 @@ const index = {
   },
 
   readPost: function (filePath) {
-
+    return new Promise (function (res, rej) {
+      fs.readFile(filePath, 'utf-8', function (err, data) {
+        if (err) {
+          rej(err)
+        } else {
+          console.log('look', data)
+          res(data)
+        }
+      })
+    })
   }
 }
 
