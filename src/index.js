@@ -1,15 +1,33 @@
 const fs = require('fs')
 const constants = require('./constants.js')
+const Post = require('./Post.js')
 
-main ()
+const index = {
+  main: async function () {
+    const dirPath = constants.postsDirPath
+    const postFiles = readPosts(dirPath)
+    if (!postFiles) return
+    postFiles.forEach (function (postFile) {
+      const post = new Post(`${bdirPath}/${postFile}`)
+      post.downloadImages()
+      post.uploadImages()
+      post.replaceUrls()
+      post.save()
+    })
+  },
 
-function main () {
-  const posts = readPosts(constants.postsDirPath)
-  if (!posts) return
-  posts.forEach (function (post) {
-  })
+  readPosts: async function (dirPath) {
+    return new Promise (function (res, rej) {
+      fs.readdir(dirPath, function (err, data) {
+        if (err) throw err
+        res(data)
+      })
+    })
+  },
+
+  readPost: function (filePath) {
+
+  }
 }
 
-function readPosts (path) {
-  //return fs.readdirSync('./_posts_original')
-}
+module.exports = index
