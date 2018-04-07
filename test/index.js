@@ -11,7 +11,7 @@ describe('index', function () {
         'sample-post-3.html'
       ]
       const result = await index.readPosts(dirPath)
-      assert.equal(result.toString, expected.toString)
+      assert.equal(result.toString(), expected.toString())
     })
   })
 

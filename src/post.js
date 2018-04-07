@@ -30,9 +30,9 @@ class Post {
 
   }
 
-  imageUrls () {
+  imageUrls (text) {
     const reqExp = /http:\/\/mountainboy\.boo\.jp\/wordpress.+jpg/g
-    console.log(str.match(reqExp))
+    return text.match(reqExp)
   }
 
   async downloadImage(url) {

@@ -1,3 +1,4 @@
 module.exports = {
-  postsDirPath: ''
+  postsDirPath: '',
+  wordpressDomtain: 'mountainboy.boo.jp'
 }
