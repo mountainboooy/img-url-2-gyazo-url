@@ -1,19 +1,6 @@
 
-class Test {
-  constructor () {
 
-  }
-
-  async say () {
-    await this.sayGoodBye()
-  }
-
-  async sayGoodBye () {
-    console.log('good bye')
-  }
-}
-
-(async function() {
-  const aaa = new Test()
-  aaa.say()
-})()
+const str = '[[[https://aaa.jpg]]]http://bbb.jpg]]]'
+const reqExp = /(https||http):\/\/\w*\.(jpg||png)/g
+const result = str.match(reqExp)
+console.log(result)

@@ -31,8 +31,11 @@ class Post {
   }
 
   imageUrls (text) {
-    const reqExp = /http:\/\/mountainboy\.boo\.jp\/wordpress.+jpg/g
-    return text.match(reqExp)
+    const reqExp = /http:\/\/mountainboy\.boo\.jp\/wordpress\/wp-content\/uploads\/\w*\.(jpg||png)/g
+    const urls = text.match(reqExp)
+    return urls.filter (function (prev, current , self) {
+      return self.indexOf(prev) === current
+    })
   }
 
   async downloadImage(url) {
