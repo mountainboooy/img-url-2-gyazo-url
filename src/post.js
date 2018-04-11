@@ -1,3 +1,6 @@
+const fetch = require('node-fetch')
+const fileType = require('file-type')
+
 class Post {
   constructor (postText) {
     this.postText = postText
@@ -31,21 +34,19 @@ class Post {
   }
 
   imageUrls (text) {
-    const reqExp = /http:\/\/mountainboy\.boo\.jp\/wordpress\/wp-content\/uploads\/\w*\.(jpg||png)/g
-    const urls = text.match(reqExp)
+    const regExp = /http:\/\/mountainboy\.boo\.jp\/wordpress\/wp-content\/uploads\/\w*\.(jpg||png)/g
+    const urls = text.match(regExp)
     return urls.filter (function (prev, current , self) {
       return self.indexOf(prev) === current
     })
   }
 
   async downloadImage(url) {
-    return new Promise( function (resolve, recect) {
-
-    })
+    const res = await fetch(url)
+    return res.body
   }
 
   save () {
-
   }
 }
 

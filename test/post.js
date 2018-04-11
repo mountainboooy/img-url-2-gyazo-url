@@ -15,4 +15,28 @@ describe('post', function () {
       assert.equal(expected.toString(), result.toString())
     })
   })
+
+  describe('downloadImages', function () {
+    it.only ('should returns image data', async function () {
+      const url = 'http://mountainboy.boo.jp/wordpress/wp-content/uploads/2014/11/DSC09771.jpg'
+      const post = new Post('aaa')
+      let data
+      try {
+        data = await post.downloadImage(url)
+      } catch (err) {
+        throw err
+        assert.ok(false)
+      }
+      const dest = fs.createWriteStream('./test.jpg');
+      data.pipe(dest)
+      try {
+        fs.statSync('./test.jpg')
+        fs.unlinkSync('./test.jpg')
+        assert.ok(true)
+      } catch (err) {
+        throw err
+        assert.ok(false)
+      }
+    })
+  })
 })
