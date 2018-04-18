@@ -16,8 +16,8 @@ describe('post', function () {
     })
   })
 
-  describe('downloadImages', function () {
-    it.only ('should returns image data', async function () {
+  describe('downloadImage', function () {
+    it ('should returns image data', async function () {
       const url = 'http://mountainboy.boo.jp/wordpress/wp-content/uploads/2014/11/DSC09771.jpg'
       const post = new Post('aaa')
       let data
@@ -37,6 +37,22 @@ describe('post', function () {
         throw err
         assert.ok(false)
       }
+    })
+  })
+
+  describe('uploadImage', function () {
+    it.only('uploads image', async function () {
+      const imagePath = './test/test_image.jpg'
+      const post = new Post('aaa')
+      let res
+      try {
+        res = await post.uploadImage(imagePath)
+        console.log(res.data.permalink_url)
+      } catch (err) {
+        throw err
+        assert.ok(false)
+      }
+      assert.ok(res.data.permalink_url)
     })
   })
 })
