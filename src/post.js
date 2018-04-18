@@ -17,10 +17,9 @@ class Post {
       let imageData
       try {
         imageData = await this.downloadImage(url)
-        const image = new Image({
-          originalUrl: url,
-          imageData: imageData
-        })
+        const image = new Image()
+        image.originalUrl = url
+        image.data = imageData
         return image
       } catch (err) {
         console.log('failed to download image:', url)
@@ -30,7 +29,15 @@ class Post {
   }
 
   async uploadImages (images) {
-
+    this.images.forEach(async function (image) {
+      let res
+      try {
+        res = await this.uploadImage(image.data)
+      } catch(err) {
+        console.log('failed to upload image:', image.originalUrl)
+      }
+      image.gyazoUrl = res.data.url
+    })
   }
 
   async uploadImage(imagePath) {
@@ -42,8 +49,9 @@ class Post {
   }
 
   imageUrls (text) {
-    const regExp = /http:\/\/mountainboy\.boo\.jp\/wordpress\/wp-content\/uploads\/\w*\.(jpg||png)/g
+    const regExp = /http:\/\/mountainboy\.boo\.jp\/wordpress\/wp-content\/uploads\/(\w||\/)*\.(jpg||png)/g
     const urls = text.match(regExp)
+    if (!urls) return []
     return urls.filter (function (prev, current , self) {
       return self.indexOf(prev) === current
     })

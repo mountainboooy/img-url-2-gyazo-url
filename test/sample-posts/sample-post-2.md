@@ -1,3 +1,3 @@
-[![DSC09808_Fotor__1416112605_58.85.255.147](http://mountainboy.boo.jp/wordpress/wp-content/uploads/aaa.jpg)](http://mountainboy.boo.jp/wordpress/wp-content/uploads/aaa.jpg)
+[![DSC09808_Fotor__1416112605_58.85.255.147](http://mountainboy.boo.jp/wordpress/wp-content/uploads/2018/10/aaa.jpg)](http://mountainboy.boo.jp/wordpress/wp-content/uploads/2018/10/aaa.jpg)
 
-[![DSC09808_Fotor__1416112605_58.85.255.147](http://mountainboy.boo.jp/wordpress/wp-content/uploads/bbb.jpg)](http://mountainboy.boo.jp/wordpress/wp-content/uploads/bbb.jpg)
+[![DSC09808_Fotor__1416112605_58.85.255.147](http://mountainboy.boo.jp/wordpress/wp-content/uploads/2018/10/bbb.jpg)](http://mountainboy.boo.jp/wordpress/wp-content/uploads/2018/10/bbb.jpg)
