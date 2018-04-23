@@ -1,3 +1,4 @@
+/*
 const assert = require('assert')
 const Post = require('../src/post.js')
 const Image = require('../src/image.js')
@@ -19,8 +20,8 @@ describe('post', function () {
   })
 
   describe('downloadImage', function () {
-    it ('should returns image data', async function () {
-      const url = 'http://mountainboy.boo.jp/wordpress/wp-content/uploads/2014/11/DSC09771.jpg'
+    it('should returns image data', async function () {
+      const url = 'http://mountainboy.boo.jp/wordpress/wp-content/uploads/2014/10/DSC09516_Fotor.jpg'
       const post = new Post('aaa')
       let data
       try {
@@ -59,10 +60,9 @@ describe('post', function () {
   })
 
   describe('uploadImages', function () {
-    it.only('uploads images', async function () {
+    it('uploads images', async function () {
       const text = 'http://mountainboy.boo.jp/wordpress/wp-content/uploads/2014/10/DSC09516_Fotor.jpg'
       const post = new Post(text)
-      post.images = [image]
       try {
         await post.downloadImages()
       } catch (err) {
@@ -76,8 +76,11 @@ describe('post', function () {
         throw err
         assert.ok(false)
       }
-      console.log('gyazoUrl', post.images[0].gyazoUrl)
-      assert.ok(post.images[0].gyazoUrl)
+      console.log('aaa', post.images.length)
+      const image = post.images[0]
+      console.log('gyazoUrl',image.gyazoUrl)
+      assert.ok(image.gyazoUrl)
     })
   })
 })
+*/

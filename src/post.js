@@ -1,5 +1,8 @@
+/*
 const fetch = require('node-fetch')
+const fs = require('fs')
 const fileType = require('file-type')
+const Image = require('./image.js')
 const accessToken = '31f273c5c18b6c5f72388719ba7221c3e3a4f66828a5d6a60517bcfe2034094d'
 const Gyazo = require('gyazo-api')
 const client = new Gyazo(accessToken)
@@ -13,31 +16,44 @@ class Post {
 
   async downloadImages () {
     const imageUrls = this.imageUrls(this.postText)
-    const imageModels = imageUrls.map(async function (url) {
-      let imageData
-      try {
-        imageData = await this.downloadImage(url)
-        const image = new Image()
-        image.originalUrl = url
-        image.data = imageData
-        return image
-      } catch (err) {
-        console.log('failed to download image:', url)
-      }
+    let imageModels = []
+    let promises = Promise.all(
+      imageUrls.map((url) => {
+        return new Promise(async (res, rej) => {
+          let imageData
+          try {
+            imageData = await this.downloadImage(url)
+            let image = new Image()
+            image.originalUrl = url
+            image.data = imageData
+            imageModels.push(image)
+            res()
+          } catch (err) {
+            console.log('failed to download image:', url, err)
+          }
+        })
+      })
+    )
+
+    return promises.then(()=>{
+      this.images = imageModels
+      console.log('bbb')
     })
-    this.images = imageModels
   }
 
-  async uploadImages (images) {
-    this.images.forEach(async function (image) {
-      let res
-      try {
-        res = await this.uploadImage(image.data)
-      } catch(err) {
-        console.log('failed to upload image:', image.originalUrl)
-      }
-      image.gyazoUrl = res.data.url
-    })
+  async uploadImages () {
+    return Promise.all(this.images.map((image) => {
+      return new Promise(async (resolve) => {
+        let res
+        try {
+          res = await this.uploadImage(image.data)
+        } catch(err) {
+          console.log('failed to upload image:', image.originalUrl, err, '-----')
+        }
+        image.gyazoUrl = res.data.url
+        resolve()
+      })
+    }))
   }
 
   async uploadImage(imagePath) {
@@ -67,3 +83,4 @@ class Post {
 }
 
 module.exports = Post
+*/
