@@ -27,7 +27,12 @@ describe.only('Image', function () {
   describe('delete saved data', function () {
     it('delete save data', async function () {
       // 保存した画像の削除
-      assert.ok(false)
+      try {
+        await image.deleteSavedData()
+      } catch (err) {
+        throw err
+        assert.ok(false)
+      }
     })
   })
 
