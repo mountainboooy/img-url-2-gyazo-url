@@ -9,7 +9,7 @@ describe('image-converter', function () {
   })
 
   describe('read file', function () {
-    it.only('read file properly', async function () {
+    it('read file properly', async function () {
       const path = './test/sample.xml'
       try {
         await converter.readFile(path)
@@ -18,6 +18,15 @@ describe('image-converter', function () {
         assert.ok(false)
       }
       assert.ok(true)
+    })
+  })
+
+  describe('pick image urls', function () {
+    it('picks up image urls', function () {
+      const text = fs.readFileSync('./test/sample.xml', 'utf-8')
+      const expected = ['http://mountainboy.boo.jp/wordpress/wp-content/uploads/2018/10/aaa.jpg']
+      const result = converter.pickImageUrls(text)
+      assert.equal(result.toString(), expected.toString())
     })
   })
 })
