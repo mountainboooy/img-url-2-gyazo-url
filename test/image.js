@@ -2,7 +2,7 @@ const assert = require('assert')
 const Image = require('../src/image.js')
 const fs = require('fs')
 
-describe.only('Image', function () {
+describe('Image', function () {
   let image
 
   before(function () {

@@ -70,7 +70,7 @@ class ImageConverter {
   }
 }
 
-module.exports = imageConver
+module.exports = ImageConverter
 
 
 

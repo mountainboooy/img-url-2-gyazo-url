@@ -1,9 +1,28 @@
-/*
 const assert = require('assert')
-const Post = require('../src/post.js')
-const Image = require('../src/image.js')
+const ImageConverter = require('../src/image-converter.js')
 const fs = require('fs')
 
+describe('image-converter', function () {
+  let converter
+  before(function () {
+    converter = new ImageConverter()
+  })
+
+  describe('read file', function () {
+    it.only('read file properly', async function () {
+      const path = './test/sample.xml'
+      try {
+        await converter.readFile(path)
+      } catch (err) {
+        throw err
+        assert.ok(false)
+      }
+      assert.ok(true)
+    })
+  })
+})
+
+/*
 describe('post', function () {
   describe('imageUrls', function () {
     it('return array of image urls', function () {
