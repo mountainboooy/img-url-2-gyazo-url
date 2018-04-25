@@ -12,20 +12,35 @@ describe.only('Image', function () {
 
   describe('download original data', function () {
     it('save image data', async function () {
-    // 画像のダウンロードと保存
-    try {
-      await image.downloadOriginalData()
-      fs.statSync('./dest/savedImage.jpg')
-    } catch (err) {
-      throw err
-      assert.ok(false)
-    }
-    assert.ok(true)
+      // 画像のダウンロードと保存
+      try {
+        await image.downloadOriginalData()
+        fs.statSync('./dest/savedImage.jpg')
+      } catch (err) {
+        throw err
+        assert.ok(false)
+      }
+      assert.ok(true)
+    })
   })
-})
 
+  describe ('upload to gyazo', function () {
+    it('returns image url', async function () {
+      // 画像のアップロード
+      let res
+      try {
+        res = await image.uploadToGyazo()
+      } catch (err) {
+        throw err
+        assert.ok(false)
+      }
+      console.log('NEW_URL:', image.newUrl)
+      assert.ok(true)
+    })
+  })
+  /*
   describe('delete saved data', function () {
-    it('delete save data', async function () {
+    it.skip('delete save data', async function () {
       // 保存した画像の削除
       try {
         await image.deleteSavedData()
@@ -34,12 +49,5 @@ describe.only('Image', function () {
         assert.ok(false)
       }
     })
-  })
-
-  describe ('upload to gyazo', function () {
-    it ('returns image url', async function () {
-      // 画像のアップロード
-      assert.ok(false)
-    })
-  })
+  })*/
 })

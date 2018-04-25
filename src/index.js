@@ -1,3 +1,26 @@
+const Image = require('./image.js')
+let images = []
+
+const index = {
+
+  main () {
+
+  },
+
+  readFile () {
+
+  },
+
+  pickImageUrls () {
+
+  },
+
+  excuteConvertImages () {
+
+  }
+}
+
+/*
 const fs = require('fs')
 const constants = require('./constants.js')
 const Post = require('./Post.js')
@@ -40,3 +63,4 @@ const index = {
 }
 
 module.exports = index
+*/

@@ -2,12 +2,13 @@ const fetch = require('node-fetch')
 const fs = require('fs')
 const Gyazo = require('gyazo-api')
 const constants = require('./constants.js')
-const savedDataDir = './dest'
+const savedDataDir = './dl'
 const savedDataPath = `${savedDataDir}/savedImage.jpg`
 
 class Image {
-  constructor () {
-    this.originalUrl = null
+  constructor (originalUrl) {
+    if (!originalUrl) return null
+    this.originalUrl = originalUrl
     this.newUrl = null
     this.gyazoClient = new Gyazo(constants.gyazoAccessToken)
   }
@@ -31,7 +32,7 @@ class Image {
   }
 
   async uploadToGyazo () {
-    const res = await this.gyazoClient.upload()
+    const res = await this.gyazoClient.upload(savedDataPath, {})
     this.newUrl = res.url
   }
 }
