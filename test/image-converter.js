@@ -9,7 +9,7 @@ describe('image-converter', function () {
   })
 
   describe('init with file path', function () {
-    it.only('returns correnct number of image urls', async function () {
+    it('returns correnct number of image urls', async function () {
       try {
         await converter.initWithFilePath('./test/sample.xml')
       } catch (err) {
