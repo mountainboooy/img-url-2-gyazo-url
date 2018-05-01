@@ -6,8 +6,8 @@ describe('Image', function () {
   let image
 
   before(function () {
-    image = new Image()
-    image.originalUrl = 'http://mountainboy.boo.jp/wordpress/wp-content/uploads/2014/10/DSC09516_Fotor.jpg'
+    const orignalUrl = 'http://mountainboy.boo.jp/wordpress/wp-content/uploads/2014/10/DSC09516_Fotor.jpg'
+    image = new Image(orignalUrl)
   })
 
   describe('download original data', function () {
@@ -25,11 +25,10 @@ describe('Image', function () {
   })
 
   describe ('upload to gyazo', function () {
-    it('returns image url', async function () {
+    it ('returns image url', async function () {
       // 画像のアップロード
-      let res
       try {
-        res = await image.uploadToGyazo()
+        await image.uploadToGyazo()
       } catch (err) {
         throw err
         assert.ok(false)
@@ -38,9 +37,9 @@ describe('Image', function () {
       assert.ok(true)
     })
   })
-  /*
+
   describe('delete saved data', function () {
-    it.skip('delete save data', async function () {
+    it ('delete save data', async function () {
       // 保存した画像の削除
       try {
         await image.deleteSavedData()
@@ -49,5 +48,5 @@ describe('Image', function () {
         assert.ok(false)
       }
     })
-  })*/
+  })
 })

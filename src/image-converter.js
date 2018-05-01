@@ -9,8 +9,8 @@ class ImageConverter {
   }
 
   async initWithFilePath (filePath) {
-    this.originalText = await readFile(filePath)
-    const imageUrls = pickImageUrls(this.originalText)
+    this.originalText = await this.readFile(filePath)
+    const imageUrls = this.pickImageUrls(this.originalText)
     this.images = imageUrls.map(function (url) {
        return new Image(url)
     })

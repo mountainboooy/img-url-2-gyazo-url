@@ -33,7 +33,7 @@ class Image {
 
   async uploadToGyazo () {
     const res = await this.gyazoClient.upload(savedDataPath, {})
-    this.newUrl = res.url
+    this.newUrl = res.data.url
   }
 }
 

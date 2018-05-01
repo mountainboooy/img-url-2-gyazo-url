@@ -8,6 +8,18 @@ describe('image-converter', function () {
     converter = new ImageConverter()
   })
 
+  describe('init with file path', function () {
+    it.only('returns correnct number of image urls', async function () {
+      try {
+        await converter.initWithFilePath('./test/sample.xml')
+      } catch (err) {
+        throw (err)
+        assert.ok(false)
+      }
+      assert.equal(2, converter.images.length)
+    })
+  })
+
   describe('read file', function () {
     it('read file properly', async function () {
       const path = './test/sample.xml'
