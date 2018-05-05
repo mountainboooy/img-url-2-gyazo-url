@@ -15,7 +15,7 @@ describe('Image', function () {
       // 画像のダウンロードと保存
       try {
         await image.downloadOriginalData()
-        fs.statSync('./dest/savedImage.jpg')
+        fs.statSync('./dl/savedImage.jpg')
       } catch (err) {
         throw err
         assert.ok(false)
