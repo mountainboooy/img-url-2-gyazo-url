@@ -14,6 +14,7 @@
   "dependencies": {
     "file-type": "^7.6.0",
     "gyazo-api": "^0.3.1",
+    "imagesize": "^1.0.0",
     "node-fetch": "^2.1.2"
   }
 }

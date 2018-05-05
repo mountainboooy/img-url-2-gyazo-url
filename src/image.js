@@ -4,6 +4,7 @@ const Gyazo = require('gyazo-api')
 const constants = require('./constants.js')
 const savedDataDir = './dl'
 const savedDataPath = `${savedDataDir}/savedImage.jpg`
+const imagesize = require('imagesize')
 
 class Image {
   constructor (originalUrl) {
@@ -20,6 +21,16 @@ class Image {
       fs.mkdirSync(savedDataDir)
     } catch (err) {}
     const dest = fs.createWriteStream(savedDataPath)
+
+    //check
+    imagesize(data, (err, result) => {
+      const errMessage = new Error('Saved image is invalid')
+      if (err) throw errMessage
+      if (!result) throw errMessage
+      if (result.width < 1 || result.height < 1) {
+        throw errMessage
+      }
+    })
     data.pipe(dest)
   }
 
