@@ -68,7 +68,6 @@ class ImageConverter {
     if (!image) return
     await image.downloadOriginalData()
     await image.uploadToGyazo()
-    await image.deleteSavedData()
     this.replaceUrl()
     await this.saveText()
   }
@@ -77,11 +76,12 @@ class ImageConverter {
     await this.sleep(1000)
     this.images.forEach(async (image, index) => {
       try {
-        this.excuteConvert(image)
-        console.log('success : ', `${index + 1} / ${this.images.length}` )
+        await this.excuteConvert(image)
+        console.log('SUCCESS : ', `${index + 1} / ${this.images.length}` )
       } catch (err) {
-        console.log('failed : ', err)
+        console.log('FAILED : ', err)
       }
+      await image.deleteSavedData()
     })
   }
 }
