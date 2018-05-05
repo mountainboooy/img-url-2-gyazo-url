@@ -56,12 +56,17 @@ class ImageConverter {
     })
   }
 
+  sleep (ms) {
+    return new Promise ((res) => {
+      setTimeout(()=> {
+        res()
+      }, ms)
+    })
+  }
+
   async excuteConvert(image) {
     if (!image) return
-    try {
-      await image.downloadOriginalData()
-    }catch(err) {throw err}
-
+    await image.downloadOriginalData()
     await image.uploadToGyazo()
     await image.deleteSavedData()
     this.replaceUrl()
@@ -69,6 +74,7 @@ class ImageConverter {
   }
 
   async excuteConverts() {
+    await this.sleep(1000)
     this.images.forEach(async (image, index) => {
       try {
         this.excuteConvert(image)
