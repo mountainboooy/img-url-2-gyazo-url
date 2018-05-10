@@ -12,12 +12,11 @@ describe('Image', function () {
 
   describe('download original data', function () {
     it.only('save image data', async function () {
-      // 画像のダウンロードと保存
       try {
         await image.downloadOriginalData()
         fs.statSync('./dl/savedImage.jpg')
       } catch (err) {
-        throw err
+        throw(err)
         assert.ok(false)
       }
       assert.ok(true)

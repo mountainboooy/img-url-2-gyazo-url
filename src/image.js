@@ -22,16 +22,25 @@ class Image {
     } catch (err) {}
     const dest = fs.createWriteStream(savedDataPath)
 
-    //check
-    imagesize(data, (err, result) => {
-      const errMessage = new Error('Saved image is invalid')
-      if (err) throw errMessage
-      if (!result) throw errMessage
-      if (result.width < 1 || result.height < 1) {
-        throw errMessage
-      }
-    })
+    // check
+    await this.validateImage(data)
     data.pipe(dest)
+  }
+
+  validateImage (data) {
+    return new Promise ((res, rej) => {
+      imagesize(data, (err, result) => {
+        const errMessage = new Error('Saved image is invalid')
+        if (err) {
+          rej(errMessage)
+        } else if (!result) {
+          rej(errMessage)
+        } else if  (result.width < 1 || result.height < 1) {
+          rej(errMessage)
+        }
+        res()
+      })
+    })
   }
 
   async deleteSavedData () {
