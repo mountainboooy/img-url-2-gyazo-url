@@ -11,7 +11,7 @@ describe('Image', function () {
   })
 
   describe('download original data', function () {
-    it.only('save image data', async function () {
+    it('save image data', async function () {
       try {
         await image.downloadOriginalData()
         fs.statSync('./dl/savedImage.jpg')

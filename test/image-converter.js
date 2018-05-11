@@ -34,10 +34,11 @@ describe('image-converter', function () {
   })
 
   describe('pick image urls', function () {
-    it('picks up image urls', function () {
+    it.only('picks up image urls', function () {
       const text = fs.readFileSync('./test/sample.xml', 'utf-8')
-      const expected = ['http://mountainboy.boo.jp/wordpress/wp-content/uploads/2018/10/aaa.jpg']
+      const expected = ['http://mountainboy.boo.jp/wordpress/wp-content/uploads/2014/11/DSC09951__1416928028_58.85.255.147.jpg', 'http://mountainboy.boo.jp/wordpress/wp-content/uploads/2014/11/DSC09749_Fotor.jpg']
       const result = converter.pickImageUrls(text)
+      console.log('RESULT', result.toString())
       assert.equal(result.toString(), expected.toString())
     })
   })

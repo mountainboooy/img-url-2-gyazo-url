@@ -29,7 +29,7 @@ class ImageConverter {
   }
 
   pickImageUrls (text) {
-    const regExp = /http:\/\/mountainboy\.boo\.jp\/wordpress\/wp-content\/uploads\/(\w||\/)*\.(jpg||png)/g
+    const regExp = /http:\/\/mountainboy\.boo\.jp\/wordpress\/wp-content\/uploads\/(\w||\/||\.)*\.(jpg||png)/g
     const urls = text.match(regExp)
     if (!urls) return []
     return urls.filter (function (prev, current , self) {
