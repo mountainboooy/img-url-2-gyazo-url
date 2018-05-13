@@ -45,7 +45,7 @@ describe('image-converter', function () {
   })
 
   describe('replace url', function () {
-    it.only('replaces original url to new url', function () {
+    it('replaces original url to new url', function () {
       const originalUrl = 'http://mountainboy.boo.jp/wordpress/wp-content/uploads/aaa.jpg'
       converter.originalText = originalUrl
       const image = new Image(originalUrl)
@@ -56,11 +56,9 @@ describe('image-converter', function () {
   })
 
   describe('excute convert', function () {
-    it('converts one image url', async function () {
+    it.only('converts one image url', async function () {
       this.timeout(10000)
       await converter.initWithFilePath('./test/sample.xml')
-      console.log(`${converter.images.length} images fond`)
-      console.log(converter.images)
       try {
         await converter.excuteConvert(converter.images[0])
       } catch (err) {

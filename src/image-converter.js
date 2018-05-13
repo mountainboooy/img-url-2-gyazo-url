@@ -39,7 +39,8 @@ class ImageConverter {
 
   replaceUrl (image) {
     if (!image) return
-    this.originalText = this.originalText.replace(image.originalUrl, image.newUrl)
+    const regExp = new RegExp(image.originalUrl, 'g')
+    this.originalText = this.originalText.replace(regExp, image.newUrl)
   }
 
   async saveText () {
