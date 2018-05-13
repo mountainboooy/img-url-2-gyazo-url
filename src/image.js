@@ -22,8 +22,8 @@ class Image {
     } catch (err) {}
     const dest = fs.createWriteStream(savedDataPath)
 
-    // check
-    await this.validateImage(data)
+    // Validation
+    //await this.validateImage(data)
     data.pipe(dest)
   }
 

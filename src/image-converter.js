@@ -39,7 +39,7 @@ class ImageConverter {
 
   replaceUrl (image) {
     if (!image) return
-    this.originalText.replace(image.originalUrl, image.newUrl)
+    this.originalText = this.originalText.replace(image.originalUrl, image.newUrl)
   }
 
   async saveText () {
@@ -67,8 +67,9 @@ class ImageConverter {
   async excuteConvert(image) {
     if (!image) return
     await image.downloadOriginalData()
+    await this.sleep(1000)
     await image.uploadToGyazo()
-    this.replaceUrl()
+    this.replaceUrl(image)
     await this.saveText()
   }
 
@@ -81,7 +82,7 @@ class ImageConverter {
       } catch (err) {
         console.log('FAILED : ', err)
       }
-      await image.deleteSavedData()
+      //await image.deleteSavedData()
     })
   }
 }

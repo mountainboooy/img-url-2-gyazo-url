@@ -6,7 +6,7 @@ describe('Image', function () {
   let image
 
   before(function () {
-    const orignalUrl = 'http://mountainboy.boo.jp/wordpress/wp-content/uploads/2014/10/DSC09516_Fotor.jpg'
+    const orignalUrl = 'http://mountainboy.boo.jp/wordpress/wp-content/uploads/2014/11/DSC09749_Fotor.jpg'
     image = new Image(orignalUrl)
   })
 
@@ -24,8 +24,9 @@ describe('Image', function () {
   })
 
   describe ('upload to gyazo', function () {
-    it ('returns image url', async function () {
+    it('returns image url', async function () {
       // 画像のアップロード
+      this.timeout(10000)
       try {
         await image.uploadToGyazo()
       } catch (err) {
