@@ -66,6 +66,7 @@ class ImageConverter {
   }
 
   async excuteConvert(image) {
+    await this.sleep(1000)
     if (!image) return
     await image.downloadOriginalData()
     await this.sleep(1000)
@@ -75,15 +76,15 @@ class ImageConverter {
   }
 
   async excuteConverts() {
-    await this.sleep(1000)
     this.images.forEach(async (image, index) => {
       try {
         await this.excuteConvert(image)
         console.log('SUCCESS : ', `${index + 1} / ${this.images.length}` )
       } catch (err) {
         console.log('FAILED : ', err)
+        return
       }
-      //await image.deleteSavedData()
+      await image.deleteSavedData()
     })
   }
 }

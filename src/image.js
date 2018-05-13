@@ -1,9 +1,9 @@
 const fetch = require('node-fetch')
 const fs = require('fs')
+const uuid = require('node-uuid')
 const Gyazo = require('gyazo-api')
 const constants = require('./constants.js')
 const savedDataDir = './dl'
-const savedDataPath = `${savedDataDir}/savedImage.jpg`
 const imagesize = require('imagesize')
 
 class Image {
@@ -12,6 +12,12 @@ class Image {
     this.originalUrl = originalUrl
     this.newUrl = null
     this.gyazoClient = new Gyazo(constants.gyazoAccessToken)
+    this.savedDataPath = this.createDataPath()
+  }
+
+  createDataPath () {
+    const randomStr = uuid.v1()
+    return `${savedDataDir}/${randomStr}.jpg`
   }
 
   async downloadOriginalData () {
@@ -20,7 +26,7 @@ class Image {
     try {
       fs.mkdirSync(savedDataDir)
     } catch (err) {}
-    const dest = fs.createWriteStream(savedDataPath)
+    const dest = fs.createWriteStream(this.savedDataPath)
 
     // Validation
     //await this.validateImage(data)
@@ -45,14 +51,14 @@ class Image {
 
   async deleteSavedData () {
     try {
-      fs.unlinkSync(savedDataPath)
+      fs.unlinkSync(this.savedDataPath)
     } catch (err) {
       throw err
     }
   }
 
   async uploadToGyazo () {
-    const res = await this.gyazoClient.upload(savedDataPath, {})
+    const res = await this.gyazoClient.upload(this.savedDataPath, {})
     this.newUrl = res.data.url
   }
 }
