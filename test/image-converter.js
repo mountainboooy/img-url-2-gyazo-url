@@ -37,7 +37,7 @@ describe('image-converter', function () {
   describe('pick image urls', function () {
     it.only('picks up image urls', function () {
       const text = fs.readFileSync('./test/sample.xml', 'utf-8')
-      const expected = ['http://mountainboy.boo.jp/wordpress/wp-content/uploads/2013/11/P70827771.png', 'http://mountainboy.boo.jp/wordpress/wp-content/uploads/2014/11/DSC09749_Fotor.jpg']
+      const expected = ['http://mountainboy.boo.jp/wordpress/wp-content/uploads/2014/11/DSC09728_Fotor.jpg', 'http://mountainboy.boo.jp/wordpress/wp-content/uploads/2014/11/DSC09749_Fotor.jpg']
       const result = converter.pickImageUrls(text)
       console.log('RESULT', result.toString())
       assert.equal(result.toString(), expected.toString())
@@ -68,85 +68,3 @@ describe('image-converter', function () {
     })
   })
 })
-
-/*
-describe('post', function () {
-  describe('imageUrls', function () {
-    it('return array of image urls', function () {
-      const text = fs.readFileSync('./test/sample-posts/sample-post-2.md', 'utf-8')
-      const expected = [
-        'http://mountainboy.boo.jp/wordpress/wp-content/uploads/2018/10/aaa.jpg',
-        'http://mountainboy.boo.jp/wordpress/wp-content/uploads/2018/10/bbb.jpg'
-      ]
-      const post = new Post(text)
-      const result = post.imageUrls(text)
-      console.log(result.toString())
-      assert.equal(expected.toString(), result.toString())
-    })
-  })
-
-  describe('downloadImage', function () {
-    it('should returns image data', async function () {
-      const url = 'http://mountainboy.boo.jp/wordpress/wp-content/uploads/2014/10/DSC09516_Fotor.jpg'
-      const post = new Post('aaa')
-      let data
-      try {
-        data = await post.downloadImage(url)
-      } catch (err) {
-        throw err
-        assert.ok(false)
-      }
-      const dest = fs.createWriteStream('./test.jpg');
-      data.pipe(dest)
-      try {
-        fs.statSync('./test.jpg')
-        fs.unlinkSync('./test.jpg')
-        assert.ok(true)
-      } catch (err) {
-        throw err
-        assert.ok(false)
-      }
-    })
-  })
-
-  describe('uploadImage', function () {
-    it('uploads image', async function () {
-      const imagePath = './test/test_image.jpg'
-      const post = new Post('aaa')
-      let res
-      try {
-        res = await post.uploadImage(imagePath)
-        console.log(res.data.permalink_url)
-      } catch (err) {
-        throw err
-        assert.ok(false)
-      }
-      assert.ok(res.data.permalink_url)
-    })
-  })
-
-  describe('uploadImages', function () {
-    it('uploads images', async function () {
-      const text = 'http://mountainboy.boo.jp/wordpress/wp-content/uploads/2014/10/DSC09516_Fotor.jpg'
-      const post = new Post(text)
-      try {
-        await post.downloadImages()
-      } catch (err) {
-        throw err
-        assert.ok(false)
-      }
-
-      try {
-        await post.uploadImages()
-      } catch (err) {
-        throw err
-        assert.ok(false)
-      }
-      console.log('aaa', post.images.length)
-      const image = post.images[0]
-      console.log('gyazoUrl',image.gyazoUrl)
-      assert.ok(image.gyazoUrl)
-    })
-  })
-})
-*/
