@@ -35,9 +35,9 @@ describe('image-converter', function () {
   })
 
   describe('pick image urls', function () {
-    it('picks up image urls', function () {
+    it.only('picks up image urls', function () {
       const text = fs.readFileSync('./test/sample.xml', 'utf-8')
-      const expected = ['http://mountainboy.boo.jp/wordpress/wp-content/uploads/2014/11/DSC09951__1416928028_58.85.255.147.jpg', 'http://mountainboy.boo.jp/wordpress/wp-content/uploads/2014/11/DSC09749_Fotor.jpg']
+      const expected = ['http://mountainboy.boo.jp/wordpress/wp-content/uploads/2013/11/P70827771.png', 'http://mountainboy.boo.jp/wordpress/wp-content/uploads/2014/11/DSC09749_Fotor.jpg']
       const result = converter.pickImageUrls(text)
       console.log('RESULT', result.toString())
       assert.equal(result.toString(), expected.toString())
@@ -56,7 +56,7 @@ describe('image-converter', function () {
   })
 
   describe('excute convert', function () {
-    it.only('converts one image url', async function () {
+    it('converts one image url', async function () {
       this.timeout(10000)
       await converter.initWithFilePath('./test/sample.xml')
       try {

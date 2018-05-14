@@ -29,7 +29,7 @@ class ImageConverter {
   }
 
   pickImageUrls (text) {
-    const regExp = /http:\/\/mountainboy\.boo\.jp\/wordpress\/wp-content\/uploads\/(\w||\/||\.)*\.(jpg||png)/g
+    const regExp = /http:\/\/mountainboy\.boo\.jp\/wordpress\/wp-content\/uploads\/(\w||\/||\.)*\.(png|jpg)/g
     const urls = text.match(regExp)
     if (!urls) return []
     return urls.filter (function (prev, current , self) {
@@ -83,7 +83,8 @@ class ImageConverter {
         await this.excuteConvert(image)
         console.log('SUCCESS : ', `${index + 1} / ${this.images.length}` )
       } catch (err) {
-        console.log('FAILED : ', err)
+        console.log('FAILED : ', image.originalUrl)
+        console.log(err)
         return
       }
       await image.deleteSavedData()
