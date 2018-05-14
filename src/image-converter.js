@@ -76,7 +76,9 @@ class ImageConverter {
   }
 
   async excuteConverts() {
-    this.images.forEach(async (image, index) => {
+    let index = 0
+    while (index < this.images.length) {
+      const image = this.images[index]
       try {
         await this.excuteConvert(image)
         console.log('SUCCESS : ', `${index + 1} / ${this.images.length}` )
@@ -85,7 +87,8 @@ class ImageConverter {
         return
       }
       await image.deleteSavedData()
-    })
+      index += 1
+    }
   }
 }
 
