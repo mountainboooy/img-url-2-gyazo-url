@@ -10,6 +10,6 @@ async function main () {
   } catch (err) {
     throw (err)
   }
-  console.log(`${converter.images.length} images fond`)
+  console.log(`${converter.images.length} images found.`)
   await converter.excuteConverts()
 }
