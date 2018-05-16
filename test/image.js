@@ -6,7 +6,7 @@ describe('Image', function () {
   let image
 
   before(function () {
-    const orignalUrl = 'http://mountainboy.boo.jp/wordpress/wp-content/uploads/2014/11/DSC09749_Fotor.jpg'
+    const orignalUrl = 'http://mountainboy.boo.jp/wordpress/wp-content/uploads/2014/11/DSC09728_Fotor.jpg'
     image = new Image(orignalUrl)
   })
 
@@ -14,7 +14,7 @@ describe('Image', function () {
     it('save image data', async function () {
       try {
         await image.downloadOriginalData()
-        fs.statSync('./dl/savedImage.jpg')
+        fs.statSync(image.savedDataPath)
       } catch (err) {
         throw(err)
         assert.ok(false)
@@ -24,10 +24,12 @@ describe('Image', function () {
   })
 
   describe ('upload to gyazo', function () {
-    it('returns image url', async function () {
+    it.only('returns image url', async function () {
       // 画像のアップロード
       this.timeout(10000)
       try {
+        await image.downloadOriginalData()
+        await sleep(1000)
         await image.uploadToGyazo()
       } catch (err) {
         throw err
@@ -50,3 +52,11 @@ describe('Image', function () {
     })
   })
 })
+
+function sleep(ms) {
+  return new Promise((res) => {
+    setTimeout(() => {
+      res()
+    }, ms)
+  })
+}

@@ -59,9 +59,11 @@ class Image {
 
   async uploadToGyazo () {
     const option = {
-      desc: `Converted from ${this.originalUrl}`
+      title: this.originalUrl,
+      desc: `Converted from ${this.originalUrl}`,
+      collection_id: constants.collectionId
     }
-    const res = await this.gyazoClient.upload(this.savedDataPath, {})
+    const res = await this.gyazoClient.upload(this.savedDataPath, option)
     this.newUrl = res.data.url
   }
 }
