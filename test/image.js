@@ -24,7 +24,7 @@ describe('Image', function () {
   })
 
   describe ('upload to gyazo', function () {
-    it.only('returns image url', async function () {
+    it('returns image url', async function () {
       // 画像のアップロード
       this.timeout(10000)
       try {
