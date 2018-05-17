@@ -51,6 +51,12 @@ class Image {
 
   async deleteSavedData () {
     try {
+      fs.statSync(this.savedDataPath)
+    } catch (err) {
+      return
+    }
+
+    try {
       fs.unlinkSync(this.savedDataPath)
     } catch (err) {
       throw err

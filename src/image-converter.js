@@ -79,17 +79,36 @@ class ImageConverter {
     let index = 0
     while (index < this.images.length) {
       const image = this.images[index]
+      const imageIndexDesc = `${index + 1} / ${this.images.length}`
       try {
         await this.excuteConvert(image)
-        console.log('SUCCESS : ', `${index + 1} / ${this.images.length}` )
+        this.consoleLog('success', 'SUCCESS : ', imageIndexDesc)
       } catch (err) {
-        console.log('FAILED : ', image.originalUrl)
-        console.log(err)
-        return
+        this.consoleLog('danger', 'FAILED : ', imageIndexDesc)
+        this.consoleLog('danger', image.originalUrl)
+        //console.log(err)
       }
       await image.deleteSavedData()
       index += 1
     }
+  }
+
+  consoleLog(status, text, imageIndexDesc) {
+    let index = imageIndexDesc ? imageIndexDesc : ''
+    let color
+    let reset = '\u001b[0m'
+
+    switch (status) {
+      case 'success': {
+        color = '\u001b[32m'
+        break
+      }
+      case 'danger': {
+        color = '\u001b[31m'
+        break
+      }
+    }
+    console.log(color + text + reset + index)
   }
 }
 
