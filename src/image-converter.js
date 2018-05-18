@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const Image = require('./image.js')
-const constants = require('./constants.js')
+const congif = require('../config.js')
 
 class ImageConverter {
   constructor () {
@@ -18,11 +18,11 @@ class ImageConverter {
   }
 
   destDir () {
-    return constants.filePath.match(/.*\//) || './'
+    return config.filePath.match(/.*\//) || './'
   }
 
   destPath (originalPath) {
-    const extension = path.extname(constants.filePath) || ''
+    const extension = path.extname(config.filePath) || ''
     return `${this.destDir()}converted${extension}`
   }
 

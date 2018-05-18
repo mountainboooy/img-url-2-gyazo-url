@@ -2,7 +2,7 @@ const fetch = require('node-fetch')
 const fs = require('fs')
 const uuid = require('node-uuid')
 const Gyazo = require('gyazo-api')
-const constants = require('./constants.js')
+const config = require('../config.js')
 const savedDataDir = './dl'
 const imagesize = require('imagesize')
 
@@ -11,7 +11,7 @@ class Image {
     if (!originalUrl) return null
     this.originalUrl = originalUrl
     this.newUrl = null
-    this.gyazoClient = new Gyazo(constants.gyazoAccessToken)
+    this.gyazoClient = new Gyazo(config.gyazoAccessToken)
     this.savedDataPath = this.createDataPath()
   }
 
@@ -67,7 +67,7 @@ class Image {
     const option = {
       title: this.originalUrl,
       desc: `Converted from ${this.originalUrl}`,
-      collection_id: constants.collectionId
+      collection_id: config.collectionId
     }
     const res = await this.gyazoClient.upload(this.savedDataPath, option)
     this.newUrl = res.data.url

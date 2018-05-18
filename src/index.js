@@ -1,12 +1,12 @@
 const ImageConverter = require('./image-converter.js')
-const constants = require('./constants.js')
+const config = require('../config.js')
 
 main()
 
 async function main () {
   let converter = new ImageConverter()
   try {
-    await converter.initWithFilePath(constants.filePath)
+    await converter.initWithFilePath(cofig.filePath)
   } catch (err) {
     throw (err)
   }
