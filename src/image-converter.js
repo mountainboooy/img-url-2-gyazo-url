@@ -1,6 +1,7 @@
 const fs = require('fs')
+const path = require('path')
 const Image = require('./image.js')
-const destDir = './dest'
+const constants = require('./constants.js')
 
 class ImageConverter {
   constructor () {
@@ -14,6 +15,15 @@ class ImageConverter {
     this.images = imageUrls.map(function (url) {
        return new Image(url)
     })
+  }
+
+  destDir () {
+    return constants.filePath.match(/.*\//) || './'
+  }
+
+  destPath (originalPath) {
+    const extension = path.extname(constants.filePath) || ''
+    return `${this.destDir()}converted${extension}`
   }
 
   readFile (filePath) {
@@ -45,12 +55,11 @@ class ImageConverter {
 
   async saveText () {
     try {
-      fs.mkdirSync(destDir)
+      fs.mkdirSync(this.destDir())
     } catch (err) {}
 
-    const path = `${destDir}/converted.xml`
     return new Promise ((res, rej) => {
-      fs.writeFile(path, this.originalText, 'utf-8', function (err) {
+      fs.writeFile(this.destPath(), this.originalText, 'utf-8', function (err) {
         if (err) rej(err)
         res()
       })
