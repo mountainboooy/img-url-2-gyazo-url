@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const Image = require('./image.js')
-const congif = require('../config.js')
+const config = require('../config.js')
 
 class ImageConverter {
   constructor () {
