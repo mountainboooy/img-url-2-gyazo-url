@@ -6,7 +6,7 @@ main()
 async function main () {
   let converter = new ImageConverter()
   try {
-    await converter.initWithFilePath(cofig.filePath)
+    await converter.initWithFilePath(config.filePath)
   } catch (err) {
     throw (err)
   }
